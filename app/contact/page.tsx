@@ -80,149 +80,243 @@ export default function Contact() {
     // prevent horizontal scroll from absolute accents
     <div className="w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 md:py-28">
-        {/* Decorative background blobs */}
-        <div
+      <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-b from-background via-muted/10 to-background">
+        {/* Decorative background */}
+        {/* <div
           aria-hidden
           className="absolute inset-0 -z-10 pointer-events-none"
           style={{
             background:
-              "radial-gradient(600px 400px at 10% 10%, rgba(99,102,241,0.12), transparent), radial-gradient(500px 350px at 90% 90%, rgba(16,85,129,0.08), transparent)",
+              "radial-gradient(800px 600px at 20% 20%, rgba(99,102,241,0.08), transparent), radial-gradient(600px 500px at 80% 80%, rgba(16,85,129,0.06), transparent)",
           }}
-        />
+        /> */}
+
+        {/* Animated orbs */}
+        {/* <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse pointer-events-none" />
+        <div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-primary/3 rounded-full blur-3xl animate-pulse pointer-events-none"
+          style={{ animationDelay: "1s" }}
+        /> */}
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            {/* Left: Headline + description */}
-            <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-foreground mb-4">
-                Get in touch — we’re here to help
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-6">
-                Whether you need a quote, technical details, or product
-                customization, our team will help you find the right solution
-                quickly.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left Section */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="inline-block">
+                  <span className="text-sm font-semibold text-primary uppercase tracking-wider px-4 py-1.5 rounded-full bg-primary/10 backdrop-blur-sm">
+                    Contact Us
+                  </span>
+                </div>
+                <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground tracking-tight">
+                  Get in touch — we're here to help
+                </h1>
+                <p className="text-lg md:text-lg text-muted-foreground leading-relaxed max-w-xl">
+                  Whether you need a quote, technical details, or product
+                  customization, our team will help you find the right solution
+                  quickly.
+                </p>
+              </div>
 
-              <div className="flex flex-wrap gap-3">
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4 text-sm">
                 <a
                   href="mailto:info@genaux.com"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-primary text-primary-foreground shadow hover:bg-primary/95 transition"
+                  className="group inline-flex  items-center gap-2 px-4 py-3.5 rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 font-medium"
                 >
-                  <Mail className="w-4 h-4" />
+                  <Mail className="w-5 h-5 transition-transform group-hover:scale-110" />
                   Email Us
                 </a>
 
                 <a
                   href="tel:+1234567890"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-border bg-background text-foreground hover:shadow-md transition"
+                  className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border-2 border-border bg-background text-foreground hover:border-primary hover:bg-primary/5 hover:shadow-md transition-all duration-300 font-medium"
                 >
-                  <Phone className="w-4 h-4" />
+                  <Phone className="w-5 h-5 transition-transform group-hover:rotate-12" />
                   Call Us
-                </a>
-
-                <a
-                  href="#contact-form"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm text-muted-foreground hover:underline transition self-center"
-                >
-                  Or send a message below
                 </a>
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-4 text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-2 bg-muted/50 px-3 py-2 rounded-full">
-                  <strong className="text-foreground">Fast response</strong>
-                  <span>— usually within 24h</span>
-                </span>
-                <span className="inline-flex items-center gap-2 bg-muted/50 px-3 py-2 rounded-full">
-                  <strong className="text-foreground">Trusted</strong>
-                  <span>— global manufacturers</span>
-                </span>
+              <a
+                href="#contact-form"
+                className="group inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <span className="text-sm">Or send a message below</span>
+                <svg
+                  className="w-4 h-4 transition-transform group-hover:translate-y-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  />
+                </svg>
+              </a>
+
+              {/* Trust Badges */}
+              <div className="flex flex-wrap gap-3 pt-4">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/5 backdrop-blur-sm px-4 py-2.5 rounded-full border border-primary/20">
+                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <span className="text-sm font-semibold text-foreground">
+                    Fast response
+                  </span>
+                  <span className="text-sm text-muted-foreground">
+                    — within 24h
+                  </span>
+                </div>
+                <div className="inline-flex items-center gap-2 bg-muted/50 backdrop-blur-sm px-4 py-2.5 rounded-full border border-border/50">
+                  <svg
+                    className="w-4 h-4 text-primary"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <span className="text-sm font-semibold text-foreground">
+                    Trusted
+                  </span>
+                  <span className="text-sm text-muted-foreground">
+                    — globally
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Right: Glass card with quick contact summary */}
-            <div className="relative">
-              <div className="backdrop-blur-sm bg-white/6 border border-border rounded-2xl p-6 shadow-md">
-                <div className="flex items-start justify-between gap-4">
+            {/* Right Glass Card */}
+            <div className="relative mt-5">
+              <div className="relative backdrop-blur-xl bg-gradient-to-br from-card/80 to-card/40 border border-border/50 rounded-3xl p-8 shadow-xl hover:shadow-3xl transition-shadow duration-500">
+                {/* Header */}
+                <div className="flex items-start justify-between gap-4 mb-8">
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground">
+                    <h3 className="text-2xl font-bold text-foreground mb-2">
                       Quick Contact
                     </h3>
-                    <p className="text-sm text-muted-foreground mt-1">
+                    <p className="text-md text-muted-foreground leading-relaxed">
                       Choose the fastest way to reach us. You can also leave a
                       detailed message below.
                     </p>
                   </div>
-                  {/* <div className="text-xs text-muted-foreground">Mon–Fri</div> */}
                 </div>
 
-                <div className="mt-6 grid grid-cols-1 gap-3">
+                {/* Contact Cards */}
+                <div className="space-y-4 mb-8">
                   <a
                     href="mailto:info@genaux.com"
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-primary/15 to-primary/5 border border-transparent hover:border-primary/20 transition"
+                    className="group flex items-center gap-4 px-5 py-4 rounded-2xl bg-gradient-to-r from-primary/15 via-primary/10 to-primary/5 border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
                   >
-                    <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center">
-                      <Mail className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Mail className="w-6 h-6 text-primary" />
                     </div>
-                    <div>
-                      <div className="text-sm font-medium text-foreground">
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-foreground mb-0.5">
                         Email
                       </div>
                       <div className="text-sm text-muted-foreground">
                         info@genaux.com
                       </div>
                     </div>
+                    <svg
+                      className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
                   </a>
 
                   <a
                     href="tel:+1234567890"
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg bg-background border border-border hover:shadow-sm transition"
+                    className="group flex items-center gap-4 px-5 py-4 rounded-2xl bg-background/80 backdrop-blur-sm border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
                   >
-                    <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center">
-                      <Phone className="w-5 h-5 text-primary" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Phone className="w-6 h-6 text-primary" />
                     </div>
-                    <div>
-                      <div className="text-sm font-medium text-foreground">
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-foreground mb-0.5">
                         Phone
                       </div>
                       <div className="text-sm text-muted-foreground">
                         +1 (234) 567-890
                       </div>
                     </div>
+                    <svg
+                      className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
                   </a>
                 </div>
 
-                <div className="mt-6 flex items-center justify-between">
-                  <div className="text-sm text-muted-foreground">
-                    <div className="font-medium text-foreground">
+                {/* Business Hours */}
+                <div className="flex   items-center justify-between pt-6 border-t border-border/50">
+                  <div className="space-y-1 hidden md:flex md:flex-col ">
+                    <div className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                       Business Hours
                     </div>
-                    <div>Mon–Fri • 9:00 — 18:00</div>
+                    <div className="text-sm text-muted-foreground ">
+                      Mon–Fri • 9:00 - 18:00
+                    </div>
                   </div>
 
                   <a
                     href="#contact-form"
-                    className="inline-flex items-center px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm hover:bg-primary/95 transition"
+                    className="group inline-flex w-full md:w-fit items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                   >
                     Leave a message
+                    <svg
+                      className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
                   </a>
                 </div>
+
+                <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
               </div>
 
-              {/* Accent ring */}
-              <div className="absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-gradient-to-tr from-primary/8 to-primary/4 blur-2xl pointer-events-none" />
+              <div className="absolute -right-8 -bottom-8 w-48 h-48 rounded-full bg-gradient-to-tr from-primary/10 to-primary/5 blur-3xl pointer-events-none" />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-gradient-to-b from-background/60 via-background to-background">
+      {/*form section*/}
+      <section
+        id="contact-form"
+        className="py-16 md:py-24  bg-gradient-to-b from-background/60 via-background to-background"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Split: Form + Map */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             {/* Form Column */}
-            <div id="contact-form" className="space-y-6 ">
+            <div className="space-y-6 ">
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -413,7 +507,7 @@ export default function Contact() {
                 <div className="h-72 sm:h-96 bg-muted flex items-center justify-center">
                   <iframe
                     title="Genaux location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1234567890!2d-74.0060!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjEiTiA3NMKwMDAnMjEuNiJX!5e0!3m2!1sen!2sus!4v1234567890"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4103.119369409639!2d80.31357465928694!3d26.456633139644826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c4784ceb8ffb7%3A0xfafd611a53b9935d!2sMDDTI%2C%20Kanpur!5e0!3m2!1sen!2sin!4v1761830185150!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
