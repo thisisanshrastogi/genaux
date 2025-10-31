@@ -78,10 +78,6 @@ export default function Home() {
   const rollingImages = industries.map((industry) => ({
     node: <NodeComp name={industry.name} image={industry.image} />,
     title: industry.name,
-    href: `/industries/${industry.name
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9-]/g, "")}`,
   }));
 
   return (
@@ -175,7 +171,7 @@ export default function Home() {
               return (
                 <Card
                   key={index}
-                  className="p-6 flex flex-col justify-between h-full bg-white/80 border-0 hover:border hover:border-primary/20 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 rounded-xl duration-300"
+                  className=" p-6 flex flex-col justify-between h-full bg-white/80 border-0 hover:border-b-3 hover:border-primary shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 rounded-xl duration-300"
                 >
                   <div>
                     <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden shadow-md flex items-center justify-center bg-gradient-to-br from-muted/40 to-muted/10">
@@ -186,10 +182,10 @@ export default function Home() {
                         style={{ objectPosition: "center" }}
                       />
                     </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">
                       {category.name}
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground ">
                       {category.description}
                     </p>
                   </div>
@@ -201,19 +197,21 @@ export default function Home() {
                     <Button
                       asChild
                       size="sm"
-                      className="bg-primary text-primary-foreground rounded-full px-3 py-1.5 shadow-sm hover:brightness-95"
+                      className="bg-primary text-primary-foreground rounded-lg px-3 py-1.5 shadow-sm hover:brightness-95"
                     >
                       <Link href={category.link}>Explore</Link>
                     </Button>
                   </div>
+
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-primary to-accent group-hover:w-3/4 transition-all duration-300 rounded-full"></span>
                 </Card>
               );
             })}
           </div>
-          <div className="flex-shrink-0 text-center md:text-right group">
+          <div className="flex-shrink-0 text-center md:text-right group mt-4">
             <Button
               size="lg"
-              className="bg-white/70 shadow-md border border-gray-300 text-black rounded-3xl hover:bg-muted/90 px-8"
+              className="bg-white/90 shadow-md border border-gray-200 hover:border-gray-300 text-black rounded-lg hover:bg-muted/90 px-8"
             >
               <Link href={"/products"}>Explore All Products</Link>
             </Button>

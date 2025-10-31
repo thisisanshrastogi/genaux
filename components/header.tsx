@@ -96,7 +96,7 @@ export function Header() {
         {/* CTA Button */}
         <Button
           asChild
-          className="bg-primary hover:bg-primary/90 rounded-full px-4 py-2 text-sm"
+          className="bg-primary hover:bg-primary/90 rounded-lg px-4 py-2 text-sm"
         >
           <Link href="/contact">Get in Touch</Link>
         </Button>

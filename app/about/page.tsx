@@ -12,24 +12,28 @@ export default function About() {
       title: "Innovation",
       description:
         "Continuously advancing our formulations and processes to stay ahead of industry demands.",
+      logo: "/innovation.png",
     },
     {
       icon: Award,
       title: "Excellence",
       description:
         "Maintaining the highest standards of quality in every product we manufacture.",
+      logo: "/excellence.png",
     },
     {
       icon: Users,
       title: "Partnership",
       description:
         "Building long-term relationships with our clients based on trust and mutual success.",
+      logo: "/partnership.png",
     },
     {
       icon: Globe,
       title: "Sustainability",
       description:
         "Committed to environmentally responsible manufacturing and sustainable practices.",
+      logo: "/sustainability.png",
     },
   ];
 
@@ -210,8 +214,12 @@ export default function About() {
                   className="p-8 border border-gray-200 hover:shadow-lg transition-all duration-300 rounded-2xl bg-white text-center"
                 >
                   <div className="flex justify-center mb-6">
-                    <div className="w-16 h-16 bg-[#2e3b51] rounded-2xl flex items-center justify-center">
-                      <Icon className="w-8 h-8 text-white" />
+                    <div className="w-16 h-16  rounded-2xl flex items-center justify-center">
+                      <img
+                        src={value.logo}
+                        alt={value.title}
+                        className="w-full h-full"
+                      />
                     </div>
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
