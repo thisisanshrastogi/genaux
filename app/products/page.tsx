@@ -50,7 +50,7 @@ export default function Products() {
       name: "Pre-treatment Chemicals",
       description: "Prepare fabrics for optimal dyeing and finishing",
       color: "from-blue-500 to-blue-600",
-      image: "/pre-treatment-chemicals.jpg",
+      image: "/pre2.png",
       products: [
         {
           name: "Scouring Agents",
@@ -86,7 +86,7 @@ export default function Products() {
       description:
         "Achieve vibrant, consistent colors with advanced formulations",
       color: "from-teal-500 to-teal-600",
-      image: "/dyeing-solutions.jpg",
+      image: "/dye1.png",
       products: [
         {
           name: "Reactive Dyes",
@@ -117,7 +117,7 @@ export default function Products() {
       name: "Finishing Chemicals",
       description: "Enhance fabric properties and protective treatments",
       color: "from-orange-500 to-orange-600",
-      image: "/finishing-chemicals.jpg",
+      image: "/fin1.png",
       products: [
         {
           name: "Softening Agents",
@@ -145,7 +145,7 @@ export default function Products() {
       name: "Specialty Chemicals",
       description: "Custom solutions for unique textile applications",
       color: "from-slate-600 to-slate-700",
-      image: "/specialty-chemicals.jpg",
+      image: "/spec1.png",
       products: [
         {
           name: "Anti-microbial Treatments",
@@ -197,10 +197,13 @@ export default function Products() {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <Button
               size="lg"
-              className="bg-primary text-white hover:bg-primary/90 px-8"
+              className="bg-primary text-white hover:bg-primary/90 hover:cursor-pointer px-8"
               onClick={() => {
                 setExpandedCategory(productCategories?.[0]?.id ?? null);
-                window.scrollBy({ top: 520, behavior: "smooth" });
+                const el = document.getElementById("products");
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth" });
+                }
               }}
             >
               Explore Products
@@ -210,7 +213,7 @@ export default function Products() {
               asChild
               size="lg"
               variant="outline"
-              className="border-gray-300 hover:bg-gray-50 px-8"
+              className="border-gray-300 hover:bg-gray-100 text-black hover:text-black px-8"
             >
               <Link href="/contact">Request a Quote</Link>
             </Button>
@@ -232,7 +235,10 @@ export default function Products() {
       </section>
 
       {/* Products Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-background via-background to-muted/20 relative overflow-hidden">
+      <section
+        className="py-16 md:py-24 bg-white relative overflow-hidden"
+        id="products"
+      >
         {/* Decorative background elements */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -241,7 +247,8 @@ export default function Products() {
           {productCategories.map((category, index) => (
             <div
               key={category.id}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+              id={category.id}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start"
             >
               {/* Image side */}
               <div
@@ -250,13 +257,13 @@ export default function Products() {
                 }`}
               >
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl md:mt-24">
                   <img
                     src={category.image}
                     alt={category.name}
-                    className="w-full h-[300px] md:h-[400px] object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-[300px] md:h-[550px]  object-cover transition-transform duration-700 scale-105 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40  to-transparent" />
 
                   {/* Floating category label */}
                   <div className="absolute bottom-6 left-6 right-6">

@@ -310,7 +310,7 @@ export default function About() {
             asChild
             size="lg"
             variant="outline"
-            className="border-gray-300 hover:border-primary transition-all duration-300"
+            className="border-gray-300  hover:bg-muted hover:text-black transition-all duration-300"
           >
             <Link href="/contact">Contact Us</Link>
           </Button>

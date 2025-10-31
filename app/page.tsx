@@ -46,21 +46,24 @@ export default function Home() {
       description:
         "Prepare fabrics for optimal dyeing and finishing with our specialized pre-treatment solutions.",
       color: "from-blue-500 to-blue-600",
-      image: "/pre-treatment-chemicals.jpg",
+      image: "/pre2.png",
+      link: "/products#pre-treatment",
     },
     {
       name: "Dyeing Solutions",
       description:
         "Achieve vibrant, consistent colors with our advanced dyeing chemical formulations.",
       color: "from-teal-500 to-teal-600",
-      image: "/dyeing-solutions.jpg",
+      image: "/dye1.png",
+      link: "/products#dyeing",
     },
     {
       name: "Finishing Chemicals",
       description:
         "Enhance fabric properties with our premium finishing and protective chemical treatments.",
       color: "from-orange-500 to-orange-600",
-      image: "/finishing-chemicals.jpg",
+      image: "/fin2.png",
+      link: "/products#finishing",
     },
   ];
 
@@ -84,7 +87,7 @@ export default function Home() {
   return (
     <div className="w-full bg-muted/20">
       {/* Hero Section */}
-      <section className="relative bg-black text-primary-foreground py-20 md:py-28 overflow-hidden flex flex-col justify-center min-h-[80vh]">
+      <section className="relative bg-black text-primary-foreground py-20 md:py-28 overflow-hidden flex flex-col justify-center min-h-[100vh]">
         {/* Soft glow accents */}
         <div className="absolute inset-0 ">
           <Silk
@@ -200,19 +203,19 @@ export default function Home() {
                       size="sm"
                       className="bg-primary text-primary-foreground rounded-full px-3 py-1.5 shadow-sm hover:brightness-95"
                     >
-                      <Link href="/products">Explore</Link>
+                      <Link href={category.link}>Explore</Link>
                     </Button>
                   </div>
                 </Card>
               );
             })}
           </div>
-          <div className="flex-shrink-0 text-center md:text-right">
+          <div className="flex-shrink-0 text-center md:text-right group">
             <Button
               size="lg"
-              className="bg-primary text-white hover:bg-primary/90 px-8"
+              className="bg-white/70 shadow-md border border-gray-300 text-black rounded-3xl hover:bg-muted/90 px-8"
             >
-              <Link href="/products">Explore All Products</Link>
+              <Link href={"/products"}>Explore All Products</Link>
             </Button>
           </div>
         </div>
