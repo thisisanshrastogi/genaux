@@ -54,7 +54,7 @@ export default function Home() {
       description:
         "Achieve vibrant, consistent colors with our advanced dyeing chemical formulations.",
       color: "from-teal-500 to-teal-600",
-      image: "/dye1.png",
+      image: "/dye2.jpeg",
       link: "/products#dyeing",
     },
     {
@@ -83,7 +83,7 @@ export default function Home() {
   return (
     <div className="w-full bg-muted/20">
       {/* Hero Section */}
-      <section className="relative bg-black text-primary-foreground py-20 md:py-28 overflow-hidden flex flex-col justify-center min-h-[100vh]">
+      <section className="relative bg-white text-primary-foreground py-20 md:py-28 overflow-hidden flex flex-col justify-center min-h-[100vh]">
         {/* Soft glow accents */}
         <div className="absolute inset-0 ">
           <Silk
@@ -99,7 +99,7 @@ export default function Home() {
         <div className="relative z-10 mt-10 max-w-5xl flex justify-center  items-center flex-col gap-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-balance">
             <BlurText
-              text="Tailored for Every Industry. Engineered for Performance."
+              text="Performance You Can Feel, Chemistry You Can Trust"
               delay={100}
               animateBy="words"
               direction="bottom"

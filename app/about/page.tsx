@@ -39,28 +39,23 @@ export default function About() {
 
   const milestones = [
     {
-      year: "2005",
-      title: "Founded",
+      year: "2019",
+      title: "Company Founded",
       description:
-        "Genaux established with a vision to revolutionize textile chemistry.",
+        "Genaux was created with the goal of transforming textile chemistry.",
+    },
+
+    {
+      year: "2022",
+      title: "Research & Development",
+      description:
+        "Developed advanced, environmentally friendly chemical manufacturing systems.",
     },
     {
-      year: "2010",
-      title: "Global Expansion",
+      year: "2025",
+      title: "Manufacturing Excellence",
       description:
-        "Expanded operations to serve manufacturers across Asia, Europe, and Americas.",
-    },
-    {
-      year: "2015",
-      title: "R&D Center",
-      description:
-        "Opened state-of-the-art research and development facility for innovation.",
-    },
-    {
-      year: "2020",
-      title: "Sustainability Initiative",
-      description:
-        "Launched eco-friendly product line and carbon-neutral manufacturing processes.",
+        "Opened a cutting-edge manufacturing facility to enhance production capabilities.",
     },
   ];
 
@@ -117,8 +112,8 @@ export default function About() {
           </span>
 
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
-            Innovating Chemistry for a{" "}
-            <span className="text-primary">Cleaner Tomorrow</span>
+            Sustainable Chemistry for a Better{" "}
+            <span className="text-primary"> Quality of Life</span>
           </h1>
 
           <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
@@ -170,16 +165,17 @@ export default function About() {
               Our Story
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Founded in 2005, Genaux began as a small research initiative and
-              has grown into a global force in textile chemical innovation.
-              Through a relentless focus on quality, partnership, and
-              sustainability, we've built solutions that empower manufacturers
-              in over 50 countries.
+              Our story Founded in 2019 as a trading firm with silicones
+              emulsions and oils as focused product line, Genaux began as a
+              small trading initiative and has grown into a manufacturing force
+              in textile chemical innovation. Through a relentless focus on
+              research and development, quality, and sustainability, we&#39;ve
+              built solutions that empowers us
             </p>
             <p className="text-lg text-gray-700 leading-relaxed">
               Our journey is defined by constant evolution, pushing boundaries,
-              and creating chemistry that doesn’t just meet standards—it sets
-              them.
+              and creating chemistry that doesn&#39;t just meet standards—it
+              sets them.
             </p>
           </div>
 
@@ -244,7 +240,7 @@ export default function About() {
           </div>
 
           <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-[#2e3b51]/30 transform -translate-x-1/2 rounded-full" />
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#2e3b51]/30 transform -translate-x-1/2 rounded-full" />
 
             <div className="space-y-16">
               {milestones.map((m, i) => (
@@ -268,8 +264,8 @@ export default function About() {
                     </Card>
                   </div>
 
-                  <div className="w-5 h-5 bg-[#2e3b51] rounded-full" />
-                  <div className="flex-1" />
+                  <div className="w-5 h-5 bg-[#2e3b51] rounded-full hidden md:block" />
+                  <div className="flex-1 hidden md:block" />
                 </div>
               ))}
             </div>
@@ -279,11 +275,10 @@ export default function About() {
 
       {/* Stats Section */}
       <section className="py-24 bg-[#2e3b51] text-white">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           {[
-            ["500+", "Active Clients"],
-            ["50+", "Countries Served"],
-            ["20+", "Years Experience"],
+            ["25+", "Active Clients"],
+            ["10+", "Years Experience"],
             ["100%", "Quality Assured"],
           ].map(([stat, label], i) => (
             <div key={i}>

@@ -78,7 +78,7 @@ export default function Contact() {
 
   return (
     // prevent horizontal scroll from absolute accents
-    <div className="w-full overflow-x-hidden">
+    <div className="w-full px-4 overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-b from-background via-muted/10 to-background">
         {/* Decorative background */}
@@ -108,14 +108,14 @@ export default function Contact() {
                     Contact Us
                   </span>
                 </div>
-                <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight text-foreground tracking-tight">
+                <h1 className="text-5xl md:text-4xl my-16 lg:text-5xl font-bold leading-tight text-foreground tracking-tight">
                   Get in touch — we're here to help
                 </h1>
-                <p className="text-lg md:text-lg text-muted-foreground leading-relaxed max-w-xl">
+                {/* <p className="text-lg md:text-lg text-muted-foreground leading-relaxed max-w-xl">
                   Whether you need a quote, technical details, or product
                   customization, our team will help you find the right solution
                   quickly.
-                </p>
+                </p> */}
               </div>
 
               {/* CTA Buttons */}
@@ -129,7 +129,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+918793846294"
                   className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border-2 border-border bg-background text-foreground hover:border-primary hover:bg-primary/5 hover:shadow-md transition-all duration-300 font-medium"
                 >
                   <Phone className="w-5 h-5 transition-transform group-hover:rotate-12" />
