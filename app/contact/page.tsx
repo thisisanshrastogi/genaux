@@ -53,14 +53,14 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      value: "info@genaux.com",
-      link: "mailto:info@genaux.com",
+      value: "info@genaux.in",
+      link: "mailto:info@genaux.in",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (234) 567-890",
-      link: "tel:+1234567890",
+      value: "+91 8793846294",
+      link: "tel:+918793846294",
     },
     {
       icon: MapPin,
@@ -121,7 +121,7 @@ export default function Contact() {
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4 text-sm">
                 <a
-                  href="mailto:info@genaux.com"
+                  href="mailto:support@genaux.in"
                   className="group inline-flex  items-center gap-2 px-4 py-3.5 rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 font-medium"
                 >
                   <Mail className="w-5 h-5 transition-transform group-hover:scale-110" />
@@ -205,10 +205,10 @@ export default function Contact() {
                 {/* Contact Cards */}
                 <div className="space-y-4 mb-8">
                   <a
-                    href="mailto:info@genaux.com"
-                    className="group flex items-center gap-4 px-5 py-4 rounded-2xl bg-gradient-to-r from-primary/15 via-primary/10 to-primary/5 border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
+                    href="mailto:support@genaux.in"
+                    className="group flex items-center gap-4 px-5 py-4 rounded-2xl bg-gradient-to-r from-muted/50 via-muted/30 to-muted/20 border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-primary/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 md:rounded-xl bg-none md:bg-primary/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Mail className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
@@ -216,7 +216,7 @@ export default function Contact() {
                         Email
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        info@genaux.com
+                        support@genaux.in
                       </div>
                     </div>
                     <svg
@@ -235,10 +235,10 @@ export default function Contact() {
                   </a>
 
                   <a
-                    href="tel:+1234567890"
+                    href="tel:+918793846294"
                     className="group flex items-center gap-4 px-5 py-4 rounded-2xl bg-background/80 backdrop-blur-sm border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-xl bg-none md:bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Phone className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
@@ -246,7 +246,7 @@ export default function Contact() {
                         Phone
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        +1 (234) 567-890
+                        +91 8793846294
                       </div>
                     </div>
                     <svg
@@ -279,7 +279,7 @@ export default function Contact() {
 
                   <a
                     href="#contact-form"
-                    className="group inline-flex w-full md:w-fit items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                    className="group inline-flex  w-full md:w-fit items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                   >
                     Leave a message
                     <svg
@@ -492,14 +492,13 @@ export default function Contact() {
                   <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                     Our location
                   </h2>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    Visit our office or request an onsite consultation.
-                  </p>
-                </div>
-                <div className="hidden sm:flex gap-2">
-                  <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-muted/40 text-sm">
-                    <MapPin className="w-4 h-4" /> 123 Industrial Ave
-                  </span>
+                  <div className="hidden sm:flex gap-2">
+                    <span className="inline-flex items-center gap-2  py-4 rounded-lg my-2  text-sm">
+                      <MapPin className="w-8 h-8" /> PLOT NO - 08, SIDDHARTH
+                      INDUSTRIES ESTATE, Nandore Rd, EAST, VEVOOR, Palghar,
+                      Maharashtra 401404
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -535,12 +534,14 @@ export default function Contact() {
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                       <div>
-                        <strong className="block text-foreground">Sales</strong>
+                        <strong className="block text-foreground">
+                          Director
+                        </strong>
                         <a
-                          href="mailto:sales@genaux.com"
+                          href="mailto:director@genaux.in"
                           className="text-muted-foreground hover:text-primary"
                         >
-                          sales@genaux.com
+                          director@genaux.in
                         </a>
                       </div>
                       <div>
@@ -548,10 +549,10 @@ export default function Contact() {
                           Support
                         </strong>
                         <a
-                          href="mailto:support@genaux.com"
+                          href="mailto:support@genaux.in"
                           className="text-muted-foreground hover:text-primary"
                         >
-                          support@genaux.com
+                          support@genaux.in
                         </a>
                       </div>
                     </div>

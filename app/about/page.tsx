@@ -33,7 +33,7 @@ export default function About() {
       title: "Sustainability",
       description:
         "Committed to environmentally responsible manufacturing and sustainable practices.",
-      logo: "/sustainability.png",
+      logo: "/sust.png",
     },
   ];
 

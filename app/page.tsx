@@ -47,15 +47,15 @@ export default function Home() {
         "Prepare fabrics for optimal dyeing and finishing with our specialized pre-treatment solutions.",
       color: "from-blue-500 to-blue-600",
       image: "/pre2.png",
-      link: "/products#pre-treatment",
+      link: "/products?category=pre-treatment",
     },
     {
       name: "Dyeing Solutions",
       description:
         "Achieve vibrant, consistent colors with our advanced dyeing chemical formulations.",
       color: "from-teal-500 to-teal-600",
-      image: "/dye2.jpeg",
-      link: "/products#dyeing",
+      image: "/dyeing-solutions.jpg",
+      link: "/products?category=dye-printing",
     },
     {
       name: "Finishing Chemicals",
@@ -63,7 +63,7 @@ export default function Home() {
         "Enhance fabric properties with our premium finishing and protective chemical treatments.",
       color: "from-orange-500 to-orange-600",
       image: "/fin2.png",
-      link: "/products#finishing",
+      link: "/products?category=finishing",
     },
   ];
 

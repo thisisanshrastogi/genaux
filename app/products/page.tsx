@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+"use client";
+
+import React, { useRef, useState, useEffect, Suspense } from "react"; // Added useEffect and Suspense
+import { useSearchParams } from "next/navigation"; // Import this
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -11,21 +14,32 @@ import {
   FlaskConical,
 } from "lucide-react";
 
-export default function Products() {
+// 1. Create a Wrapper Component
+// (Next.js requires components using useSearchParams to be wrapped in Suspense boundary)
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProductsContent />
+    </Suspense>
+  );
+}
+
+function ProductsContent() {
   const [activeCategory, setActiveCategory] = useState<string>("pre-treatment");
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const searchParams = useSearchParams();
   // 1. Create a reference to the top of the product section
-  const topRef = useRef(null);
+  const topRef = useRef<HTMLDivElement>(null);
 
   // 2. Custom handler to switch category AND scroll up
-  const handleCategoryChange = (id) => {
+  const handleCategoryChange = (id: React.SetStateAction<string>) => {
     setActiveCategory(id);
 
     // Check if we are currently scrolled below the top of the section
     // If so, scroll back up to the top of the product area
     if (topRef.current) {
       // We subtract 100px (approx) to account for any sticky headers you might have
-      const yOffset = -100;
+      const yOffset = -50;
       const element = topRef.current;
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
 
@@ -363,7 +377,7 @@ export default function Products() {
       title: "Post Treatment Chemicals",
       subtitle:
         "Washing-off and fixing agents to enhance color fastness and handle after dyeing or printing.",
-      image: "/post1.png",
+      image: "/fin1.png",
       groups: [
         {
           name: "Reducing Agent",
@@ -446,8 +460,33 @@ export default function Products() {
     },
   ];
 
+  useEffect(() => {
+    // Check if URL has ?category=xyz
+    const categoryParam = searchParams.get("category");
+
+    if (categoryParam) {
+      // Update state
+      setActiveCategory(categoryParam);
+
+      // Optional: Scroll to the product section automatically
+      if (topRef.current) {
+        setTimeout(() => {
+          const yOffset = -5;
+          const element = topRef.current;
+          if (element) {
+            const y =
+              element.getBoundingClientRect().top + window.scrollY + yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
+        }, 100); // Small delay to ensure render
+      }
+    }
+  }, [searchParams]);
+
   return (
-    <div className="w-full bg-white text-foreground">
+    <div className="w-full bg-slate-50/50 text-foreground relative selection:bg-primary/20">
+      <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+
       {/* HERO */}
       <section className="relative py-28 bg-white text-gray-900 min-h-dvh mt-10">
         <div className="relative max-w-4xl mx-auto px-4 text-center">
@@ -478,7 +517,12 @@ export default function Products() {
             >
               Explore Products
             </Button>
-            <Button asChild size="lg" variant="outline" className="px-8">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="px-8 hover:bg-muted hover:text-black"
+            >
               <Link href="/contact">Request a Quote</Link>
             </Button>
           </div>
@@ -488,11 +532,7 @@ export default function Products() {
       {/* PRODUCTS */}
 
       {/* new Products */}
-      <section
-        id="products"
-        ref={topRef}
-        className="py-12 lg:py-20 min-h-dvh bg-background"
-      >
+      <section id="products" ref={topRef} className="py-12 lg:py-20 min-h-dvh ">
         <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* --- Sidebar Navigation (Desktop) --- */}
           <aside className="hidden lg:block lg:col-span-3 xl:col-span-2">
@@ -501,7 +541,7 @@ export default function Products() {
                 <h4 className="text-sm uppercase tracking-wider text-muted-foreground font-semibold mb-4 px-2">
                   Product Lines
                 </h4>
-                <nav className="space-y-1">
+                <nav className="space-y-2">
                   {categories.map((c) => (
                     <button
                       key={c.id}
@@ -521,7 +561,7 @@ export default function Products() {
                 </nav>
               </div>
 
-              <div className="p-4 bg-muted/50 rounded-xl border border-muted">
+              <div className="p-4 bg-accent-foreground/10 rounded-xl border border-muted/80">
                 <h5 className="font-medium text-sm mb-2">
                   Need Custom Formulations?
                 </h5>
@@ -532,7 +572,7 @@ export default function Products() {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="w-full bg-background hover:bg-muted/10 hover:text-black"
+                  className="w-full bg-background border-primary/30 hover:bg-muted/10 hover:text-black"
                   asChild
                 >
                   <Link href="/contact">Contact Support</Link>
@@ -561,7 +601,7 @@ export default function Products() {
           </div>
 
           {/* --- Main Content Area --- */}
-          <main className="lg:col-span-9 xl:col-span-10 space-y-10">
+          <main className="lg:col-span-9 xl:col-span-10 space-y-10 mb-28">
             {categories.map((cat) => (
               <div
                 key={cat.id}
@@ -596,7 +636,7 @@ export default function Products() {
                     return (
                       <Card
                         key={key}
-                        className={`overflow-hidden p-0 transition-all duration-300 border-muted group ${
+                        className={`overflow-hidden p-0 transition-all duration-300 border-muted/30 group ${
                           isExpanded
                             ? "ring-1 ring-primary/20 shadow-md"
                             : "shadow-sm hover:shadow-md hover:border-primary/30 group"
@@ -609,13 +649,13 @@ export default function Products() {
                         >
                           <div className="flex items-center gap-4">
                             <div
-                              className={`p-2 rounded-full transition-colors ${
+                              className={`w-8 h-8 rounded-md flex items-center justify-center transition-all duration-200 ${
                                 isExpanded
-                                  ? "bg-primary/10 text-primary"
-                                  : "bg-muted text-muted-foreground"
+                                  ? "bg-primary text-white shadow-lg shadow-primary/30 "
+                                  : "bg-slate-100 text-slate-500 group-hover:bg-primary/10 group-hover:text-primary"
                               }`}
                             >
-                              <FlaskConical className="w-5 h-5" />
+                              <FlaskConical className="w-4 h-4" />
                             </div>
                             <div>
                               <h3 className="text-base font-semibold text-foreground">
@@ -651,48 +691,47 @@ export default function Products() {
 
                         {/* Expanded Content */}
                         {isExpanded && (
-                          <div className="p-5 pt-0 border-t border-dashed bg-muted/10 animate-in slide-in-from-top-2 duration-200">
-                            <div className="mt-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                          <div className="px-6 pb-6 pt-2 bg-gradient-to-b from-transparent to-slate-50/50 animate-in slide-in-from-top-2 duration-300">
+                            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                               {g.items.map((it, ii) => (
-                                <article
+                                <div
                                   key={ii}
-                                  className="group relative flex flex-col justify-between rounded-xl border bg-background/50 p-4 hover:border-primary/50 hover:shadow-sm transition-all duration-200"
+                                  className="group relative flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300"
                                 >
                                   <div>
-                                    <header className="flex justify-between items-start gap-2 mb-3">
-                                      <h4 className="font-bold text-sm leading-tight text-foreground group-hover:text-primary transition-colors">
+                                    <header className="mb-4">
+                                      <h4 className="font-bold text-base text-slate-900 group-hover:text-primary transition-colors">
                                         {it.name}
                                       </h4>
-                                      {/* Action Icon/Menu could go here */}
                                     </header>
 
-                                    {/* Tags / Badges */}
+                                    {/* Technical Badges - Modernized */}
                                     <div className="flex flex-wrap gap-2 mb-4">
                                       {it.ionicNature && (
-                                        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-accent-foreground text-primary border border-primary/50">
+                                        <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-[10px] font-medium bg-accent-foreground/10 text-primary border border-primary/50">
                                           {it.ionicNature}
                                         </span>
                                       )}
                                       {it.chemistry && (
-                                        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-accent-foreground text-primary border border-primary/50">
+                                        <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-[10px] font-medium bg-accent-foreground/10 text-primary border border-primary/50">
                                           {it.chemistry}
                                         </span>
                                       )}
                                     </div>
 
-                                    {/* Properties List */}
+                                    {/* Properties - Bullet points */}
                                     {it.properties &&
                                       it.properties.length > 0 && (
-                                        <ul className="space-y-1.5 mb-4">
+                                        <ul className="space-y-2 mb-4">
                                           {it.properties
                                             .slice(0, 3)
                                             .map((p, idx) => (
                                               <li
                                                 key={idx}
-                                                className="flex items-start gap-2 text-xs text-muted-foreground"
+                                                className="flex items-start gap-2.5 text-xs text-slate-500"
                                               >
-                                                <div className="mt-1 w-1 h-1 rounded-full bg-primary/40 shrink-0" />
-                                                <span className="leading-relaxed">
+                                                <div className="mt-1.5 w-1 h-1 rounded-full bg-primary/60 shrink-0 shadow-[0_0_8px_rgba(var(--primary),0.6)]" />
+                                                <span className="leading-relaxed font-medium">
                                                   {p}
                                                 </span>
                                               </li>
@@ -701,17 +740,16 @@ export default function Products() {
                                       )}
                                   </div>
 
-                                  {/* Footer actions */}
-                                  {/* <div className="mt-2 pt-3 border-t flex items-center justify-between">
-                                    <span className="text-[10px] font-mono text-muted-foreground">
-                                      {it.pack || "25kg / 200L"}
+                                  {/* Action Footer */}
+                                  {/* <div className="pt-4 mt-2 border-t border-slate-100 flex items-center justify-between opacity-60 group-hover:opacity-100 transition-opacity">
+                                    <span className="text-[10px] font-mono text-slate-400">
+                                      25kg / 200L
                                     </span>
-                                    <button className="text-[10px] font-medium text-primary hover:underline flex items-center gap-1">
-                                      Data Sheet{" "}
+                                    <div className="w-6 h-6 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
                                       <ArrowRight className="w-3 h-3" />
-                                    </button>
+                                    </div>
                                   </div> */}
-                                </article>
+                                </div>
                               ))}
                             </div>
                           </div>

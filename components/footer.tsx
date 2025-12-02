@@ -9,10 +9,18 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary-foreground rounded-lg flex items-center justify-center">
-                <span className="text-primary font-bold text-lg">G</span>
+              <div className="w-50">
+                <Link
+                  href="/"
+                  className="flex justify-start  items-center gap-2"
+                >
+                  <img
+                    src="/genaux_nob.png"
+                    alt="Genaux Logo"
+                    className="object-cover h-full w-auto grayscale  -ml-5 brightness-[1000%]" // Adjusted height for better proportion
+                  />
+                </Link>
               </div>
-              <span className="font-bold text-lg">Genaux</span>
             </div>
             <p className="text-sm opacity-90">
               Tailored for Every Industry. Engineered for Performance.
@@ -56,7 +64,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="#"
+                  href="/products?category=pre-treatment"
                   className="opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Pre-treatment Chemicals
@@ -64,7 +72,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/products?category=dye-printing"
                   className="opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Dyeing Solutions
@@ -72,7 +80,15 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/products?category=post-treatment"
+                  className="opacity-90 hover:opacity-100 transition-opacity"
+                >
+                  Post Treatment Chemicals
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/products?category=finishing"
                   className="opacity-90 hover:opacity-100 transition-opacity"
                 >
                   Finishing Chemicals
@@ -88,10 +104,10 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <Mail size={16} className="mt-0.5 flex-shrink-0" />
                 <a
-                  href="mailto:info@genaux.com"
+                  href="mailto:support@genaux.in"
                   className="opacity-90 hover:opacity-100 transition-opacity"
                 >
-                  info@genaux.com
+                  support@genaux.in
                 </a>
               </li>
               <li className="flex items-start gap-2">
@@ -106,7 +122,8 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="mt-0.5 flex-shrink-0" />
                 <span className="opacity-90">
-                  123 Industrial Ave, Tech City, TC 12345
+                  SHOP NO - 08, SIDDHARTH INDUSTRIES ESTATE, Nandore Rd, EAST,
+                  VEVOOR, Palghar, Maharashtra 401404
                 </span>
               </li>
             </ul>
