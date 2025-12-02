@@ -1,13 +1,37 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import {
+  ArrowRight,
+  ChevronDown,
+  ChevronRight,
+  FlaskConical,
+} from "lucide-react";
 
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState<string>("pre-treatment");
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  // 1. Create a reference to the top of the product section
+  const topRef = useRef(null);
+
+  // 2. Custom handler to switch category AND scroll up
+  const handleCategoryChange = (id) => {
+    setActiveCategory(id);
+
+    // Check if we are currently scrolled below the top of the section
+    // If so, scroll back up to the top of the product area
+    if (topRef.current) {
+      // We subtract 100px (approx) to account for any sticky headers you might have
+      const yOffset = -100;
+      const element = topRef.current;
+      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   const toggle = (k: string) => setExpanded((s) => ({ ...s, [k]: !s[k] }));
 
@@ -462,236 +486,241 @@ export default function Products() {
       </section>
 
       {/* PRODUCTS */}
-      <section id="products" className="py-16 min-h-dvh">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <aside className="lg:col-span-2 border-r pr-6 hidden lg:block">
-            <div className="sticky top-20 space-y-3">
-              <div className="px-3 py-4 rounded-lg">
-                <h4 className="text-lg font-semibold">Categories</h4>
+
+      {/* new Products */}
+      <section
+        id="products"
+        ref={topRef}
+        className="py-12 lg:py-20 min-h-dvh bg-background"
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          {/* --- Sidebar Navigation (Desktop) --- */}
+          <aside className="hidden lg:block lg:col-span-3 xl:col-span-2">
+            <div className="sticky top-24 space-y-6">
+              <div>
+                <h4 className="text-sm uppercase tracking-wider text-muted-foreground font-semibold mb-4 px-2">
+                  Product Lines
+                </h4>
+                <nav className="space-y-1">
+                  {categories.map((c) => (
+                    <button
+                      key={c.id}
+                      onClick={() => handleCategoryChange(c.id)}
+                      className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 text-sm font-medium flex items-center justify-between group ${
+                        activeCategory === c.id
+                          ? "bg-primary text-primary-foreground shadow-md"
+                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      }`}
+                    >
+                      {c.title}
+                      {activeCategory === c.id && (
+                        <ChevronRight className="w-4 h-4" />
+                      )}
+                    </button>
+                  ))}
+                </nav>
               </div>
 
-              <nav className="space-y-1">
-                {categories.map((c) => (
-                  <button
-                    key={c.id}
-                    onClick={() => setActiveCategory(c.id)}
-                    className={`w-full text-left px-3 py-2 rounded-md transition text-sm ${
-                      activeCategory === c.id
-                        ? "bg-primary/10 font-semibold"
-                        : "bg-transparent hover:bg-primary/4"
-                    }`}
-                  >
-                    {c.title}
-                  </button>
-                ))}
-              </nav>
-
-              <div className="mt-4 px-3">
-                <Button size="sm" asChild>
-                  <Link href="/contact">Contact</Link>
+              <div className="p-4 bg-muted/50 rounded-xl border border-muted">
+                <h5 className="font-medium text-sm mb-2">
+                  Need Custom Formulations?
+                </h5>
+                <p className="text-xs text-muted-foreground mb-3">
+                  We specialize in tailoring chemical solutions to your specific
+                  machinery.
+                </p>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full bg-background hover:bg-muted/10 hover:text-black"
+                  asChild
+                >
+                  <Link href="/contact">Contact Support</Link>
                 </Button>
               </div>
             </div>
           </aside>
 
-          <main className="lg:col-span-10 space-y-8">
+          {/* --- Mobile Navigation (Sticky Top) --- */}
+          <div className="lg:hidden col-span-1 sticky top-[60px] z-30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 py-2 border-b -mx-4 px-4 overflow-x-auto no-scrollbar">
+            <div className="flex space-x-2">
+              {categories.map((c) => (
+                <button
+                  key={c.id}
+                  onClick={() => handleCategoryChange(c.id)}
+                  className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeCategory === c.id
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {c.title}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* --- Main Content Area --- */}
+          <main className="lg:col-span-9 xl:col-span-10 space-y-10">
             {categories.map((cat) => (
-              <section
+              <div
                 key={cat.id}
-                className={`${activeCategory === cat.id ? "block" : "hidden"}`}
+                className={`space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 ${
+                  activeCategory === cat.id ? "block" : "hidden"
+                }`}
               >
-                <div className="flex flex-col lg:flex-row gap-6">
-                  <div className="flex-1">
-                    <h2 className="text-3xl font-semibold">{cat.title}</h2>
-                    <p className="text-sm text-muted-foreground mt-2">
+                {/* Category Hero Header */}
+                <div className="relative rounded-2xl overflow-hidden shadow-sm border group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10" />
+                  <img
+                    src={cat.image}
+                    alt={cat.title}
+                    className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20 max-w-2xl">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+                      {cat.title}
+                    </h2>
+                    <p className="text-gray-200 mt-2 text-sm md:text-base line-clamp-2">
                       {cat.subtitle}
                     </p>
+                  </div>
+                </div>
 
-                    <div className="mt-6 space-y-4">
-                      {cat.groups.map((g, gi) => {
-                        const key = `${cat.id}-${gi}`;
-                        const condensed = cat.id === "dye-printing";
+                {/* Product Groups List */}
+                <div className="grid gap-4">
+                  {cat.groups.map((g, gi) => {
+                    const key = `${cat.id}-${gi}`;
+                    const isExpanded = expanded[key];
 
-                        return (
-                          <Card key={key} className="p-4 rounded-2xl shadow-sm">
-                            <div className="flex items-center justify-between gap-4">
-                              <div>
-                                <div className="text-base font-semibold">
-                                  {g.name}
-                                </div>
-                                <div className="text-xs text-muted-foreground mt-1">
-                                  {g.items.length} SKUs
-                                </div>
-                              </div>
-
-                              <Button
-                                size="sm"
-                                variant="default"
-                                className=""
-                                onClick={() => toggle(key)}
-                                aria-expanded={!!expanded[key]}
-                              >
-                                {expanded[key] ? "Hide items" : "View items"}
-                              </Button>
+                    return (
+                      <Card
+                        key={key}
+                        className={`overflow-hidden p-0 transition-all duration-300 border-muted group ${
+                          isExpanded
+                            ? "ring-1 ring-primary/20 shadow-md"
+                            : "shadow-sm hover:shadow-md hover:border-primary/30 group"
+                        }`}
+                      >
+                        {/* Group Header (Clickable) */}
+                        <div
+                          onClick={() => toggle(key)}
+                          className="p-5 flex  items-center justify-between cursor-pointer select-none bg-card  transition-colors"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div
+                              className={`p-2 rounded-full transition-colors ${
+                                isExpanded
+                                  ? "bg-primary/10 text-primary"
+                                  : "bg-muted text-muted-foreground"
+                              }`}
+                            >
+                              <FlaskConical className="w-5 h-5" />
                             </div>
+                            <div>
+                              <h3 className="text-base font-semibold text-foreground">
+                                {g.name}
+                              </h3>
+                              <p className="text-xs text-muted-foreground mt-0.5">
+                                {isExpanded
+                                  ? "Showing all available formulations"
+                                  : `${
+                                      g.items.length
+                                    } variants available • ${g.items
+                                      .slice(0, 3)
+                                      .map((i) => i.name)
+                                      .join(", ")}${
+                                      g.items.length > 3 ? "..." : ""
+                                    }`}
+                              </p>
+                            </div>
+                          </div>
 
-                            {!expanded[key] && (
-                              <div className="mt-3 text-xs text-muted-foreground">
-                                {g.items
-                                  .slice(0, 3)
-                                  .map((it) => it.name)
-                                  .join(" · ")}
-                                {g.items.length > 3 && (
-                                  <span> · +{g.items.length - 3} more</span>
-                                )}
-                              </div>
-                            )}
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="shrink-0 text-muted-foreground"
+                          >
+                            <ChevronDown
+                              className={`w-5 h-5 transition-transform duration-300 ${
+                                isExpanded ? "rotate-180" : ""
+                              }`}
+                            />
+                          </Button>
+                        </div>
 
-                            {expanded[key] && (
-                              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-                                {g.items.map((it, ii) => (
-                                  <article
-                                    key={ii}
-                                    className="rounded-lg border bg-surface p-4 flex flex-col gap-3 h-full transition hover:shadow-sm"
-                                  >
-                                    <header>
-                                      <h3 className="font-semibold text-sm leading-tight">
+                        {/* Expanded Content */}
+                        {isExpanded && (
+                          <div className="p-5 pt-0 border-t border-dashed bg-muted/10 animate-in slide-in-from-top-2 duration-200">
+                            <div className="mt-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                              {g.items.map((it, ii) => (
+                                <article
+                                  key={ii}
+                                  className="group relative flex flex-col justify-between rounded-xl border bg-background/50 p-4 hover:border-primary/50 hover:shadow-sm transition-all duration-200"
+                                >
+                                  <div>
+                                    <header className="flex justify-between items-start gap-2 mb-3">
+                                      <h4 className="font-bold text-sm leading-tight text-foreground group-hover:text-primary transition-colors">
                                         {it.name}
-                                      </h3>
-
-                                      {(it.ionicNature || it.chemistry) && (
-                                        <div className="text-[11px] text-muted-foreground mt-1">
-                                          {it.ionicNature
-                                            ? `${it.ionicNature}`
-                                            : ""}
-                                          {it.ionicNature && it.chemistry
-                                            ? " • "
-                                            : ""}
-                                          {it.chemistry
-                                            ? `${it.chemistry}`
-                                            : ""}
-                                        </div>
-                                      )}
-
-                                      {/* {it.desc && (
-                                        <p className="text-xs text-muted-foreground mt-2">
-                                          {it.desc}
-                                        </p>
-                                      )} */}
+                                      </h4>
+                                      {/* Action Icon/Menu could go here */}
                                     </header>
 
-                                    {/* <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
-                                      <div>
-                                        <dt className="text-muted-foreground">
-                                          Pack
-                                        </dt>
-                                        <dd>{it.pack ?? "25kg / 200L"}</dd>
-                                      </div>
+                                    {/* Tags / Badges */}
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                      {it.ionicNature && (
+                                        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-accent-foreground text-primary border border-primary/50">
+                                          {it.ionicNature}
+                                        </span>
+                                      )}
+                                      {it.chemistry && (
+                                        <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-accent-foreground text-primary border border-primary/50">
+                                          {it.chemistry}
+                                        </span>
+                                      )}
+                                    </div>
 
-                                      <div>
-                                        <dt className="text-muted-foreground">
-                                          pH
-                                        </dt>
-                                        <dd>{it.ph ?? "—"}</dd>
-                                      </div>
-
-                                      <div>
-                                        <dt className="text-muted-foreground">
-                                          Density
-                                        </dt>
-                                        <dd>{it.density ?? "—"}</dd>
-                                      </div>
-
-                                      <div>
-                                        <dt className="text-muted-foreground">
-                                          Solubility
-                                        </dt>
-                                        <dd>{it.solubility ?? "—"}</dd>
-                                      </div>
-
-                                      <div className="col-span-2">
-                                        <dt className="text-muted-foreground">
-                                          Application
-                                        </dt>
-                                        <dd className="text-xs">
-                                          {it.application ?? "—"}
-                                        </dd>
-                                      </div>
-
-                                      <div>
-                                        <dt className="text-muted-foreground">
-                                          MSDS
-                                        </dt>
-                                        <dd>
-                                          {it.msdsUrl ? (
-                                            <a
-                                              href={it.msdsUrl}
-                                              target="_blank"
-                                              rel="noreferrer"
-                                              className="underline text-xs"
-                                            >
-                                              Download
-                                            </a>
-                                          ) : (
-                                            "—"
-                                          )}
-                                        </dd>
-                                      </div>
-
-                                      <div>
-                                        <dt className="text-muted-foreground">
-                                          Notes
-                                        </dt>
-                                        <dd>{it.notes ?? "—"}</dd>
-                                      </div>
-                                    </dl> */}
-
+                                    {/* Properties List */}
                                     {it.properties &&
                                       it.properties.length > 0 && (
-                                        <ul className="mt-2 text-xs list-disc pl-4 text-muted-foreground">
-                                          {it.properties.map((p, idx) => (
-                                            <li key={idx}>{p}</li>
-                                          ))}
+                                        <ul className="space-y-1.5 mb-4">
+                                          {it.properties
+                                            .slice(0, 3)
+                                            .map((p, idx) => (
+                                              <li
+                                                key={idx}
+                                                className="flex items-start gap-2 text-xs text-muted-foreground"
+                                              >
+                                                <div className="mt-1 w-1 h-1 rounded-full bg-primary/40 shrink-0" />
+                                                <span className="leading-relaxed">
+                                                  {p}
+                                                </span>
+                                              </li>
+                                            ))}
                                         </ul>
                                       )}
-                                  </article>
-                                ))}
-                              </div>
-                            )}
+                                  </div>
 
-                            {condensed && !expanded[key] && (
-                              <div className="mt-3 text-xs text-muted-foreground">
-                                Click “View items” to see available SKUs.
-                              </div>
-                            )}
-                          </Card>
-                        );
-                      })}
-                    </div>
-
-                    <div className="mt-6 flex gap-3">{/* future CTAs */}</div>
-                  </div>
-
-                  {/* Category banner / highlights */}
-                  <aside className="w-full lg:w-96">
-                    <div className="rounded-xl overflow-hidden shadow-md ">
-                      <img
-                        src={cat.image}
-                        alt={cat.title}
-                        className="w-full h-56 md:h-72 object-cover"
-                      />
-                      <div className="p-4 bg-white">
-                        <div className="text-sm font-medium">Highlights</div>
-                        <ul className="mt-2 text-sm space-y-1 text-muted-foreground">
-                          <li>Application-focused formulations</li>
-                          <li>Process-optimised performance</li>
-                          <li>Eco-conscious options</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </aside>
+                                  {/* Footer actions */}
+                                  {/* <div className="mt-2 pt-3 border-t flex items-center justify-between">
+                                    <span className="text-[10px] font-mono text-muted-foreground">
+                                      {it.pack || "25kg / 200L"}
+                                    </span>
+                                    <button className="text-[10px] font-medium text-primary hover:underline flex items-center gap-1">
+                                      Data Sheet{" "}
+                                      <ArrowRight className="w-3 h-3" />
+                                    </button>
+                                  </div> */}
+                                </article>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </Card>
+                    );
+                  })}
                 </div>
-              </section>
+              </div>
             ))}
           </main>
         </div>

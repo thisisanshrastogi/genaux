@@ -507,7 +507,7 @@ export default function Contact() {
                 <div className="h-72 sm:h-96 bg-muted flex items-center justify-center">
                   <iframe
                     title="Genaux location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4103.119369409639!2d80.31357465928694!3d26.456633139644826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c4784ceb8ffb7%3A0xfafd611a53b9935d!2sMDDTI%2C%20Kanpur!5e0!3m2!1sen!2sin!4v1761830185150!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3755.9280983328367!2d72.7902204!3d19.715685099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be71d9ec7e034e1%3A0x49368eee7bdc2083!2sGENAUX%20SPECIALITY%20CHEMICALS!5e0!3m2!1sen!2sin!4v1764651900019!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -596,7 +596,7 @@ export default function Contact() {
       {/* FAQ Section */}
       {/* <section className="py-16 md:py-24 bg-background"> */}
       {/* FAQ Section */}
-      <section className="py-16 md:py-24 bg-background">
+      {/* <section className="py-16 md:py-24 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -638,7 +638,7 @@ export default function Contact() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
